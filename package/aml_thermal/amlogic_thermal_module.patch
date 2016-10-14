@@ -1,0 +1,47 @@
+--- aml_thermal-2016-08-18-e3cf13d109/amlogic_thermal_module.c	2015-10-27 18:13:20.000000000 +0800
++++ aml_thermal-2016-08-18-e3cf13d109/amlogic_thermal_module.c	2016-10-14 22:29:14.000000000 +0800
+@@ -249,7 +249,7 @@
+             }
+             if (thermal_zone_bind_cooling_device(thermal, i, cdev,
+                         pdata->tmp_trip[i].cpu_upper_level,
+-                        pdata->tmp_trip[i].cpu_lower_level)) {
++                        pdata->tmp_trip[i].cpu_lower_level,THERMAL_WEIGHT_DEFAULT )) {
+                 THERMAL_ERR("error binding cdev inst %d\n", i);
+                 ret = -EINVAL;
+                 goto out;
+@@ -282,7 +282,7 @@
+             }
+             if (thermal_zone_bind_cooling_device(thermal, i, cdev,
+                         pdata->tmp_trip[i].gpu_upper_level,
+-                        pdata->tmp_trip[i].gpu_lower_level)) {
++                        pdata->tmp_trip[i].gpu_lower_level,THERMAL_WEIGHT_DEFAULT )) {
+                 THERMAL_ERR("error binding cdev inst %d\n", i);
+                 ret = -EINVAL;
+                 goto out;
+@@ -311,7 +311,7 @@
+                 pdata->tmp_trip[i].cpu_core_upper=pdata->tmp_trip[i].cpu_core_num;
+             if (thermal_zone_bind_cooling_device(thermal, i, cdev,
+                         pdata->tmp_trip[i].cpu_core_upper,
+-                        pdata->tmp_trip[i].cpu_core_upper)) {
++                        pdata->tmp_trip[i].cpu_core_upper,THERMAL_WEIGHT_DEFAULT )) {
+                 THERMAL_ERR("error binding cdev inst %d\n", i);
+                 ret = -EINVAL;
+                 goto out;
+@@ -340,7 +340,7 @@
+ 
+             if (thermal_zone_bind_cooling_device(thermal, i, cdev,
+                         pdata->tmp_trip[i].gpu_core_upper,
+-                        pdata->tmp_trip[i].gpu_core_upper)) {
++                        pdata->tmp_trip[i].gpu_core_upper,THERMAL_WEIGHT_DEFAULT )) {
+                 THERMAL_ERR("error binding cdev inst %d\n", i);
+                 ret = -EINVAL;
+                 goto out;
+@@ -720,7 +720,7 @@
+         ret = -EINVAL;
+         goto err_unregister;
+     }
+-    pdata->cpucore_cool_dev = cpucore_cooling_register();
++    pdata->cpucore_cool_dev = cpucore_cooling_register(0,0);
+     if (IS_ERR(pdata->cpucore_cool_dev)) {
+         THERMAL_ERR("Failed to register cpufreq cooling device\n");
+         ret = -EINVAL;

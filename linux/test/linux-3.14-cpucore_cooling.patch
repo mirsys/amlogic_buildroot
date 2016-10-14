@@ -1,0 +1,21 @@
+--- a/include/linux/cpucore_cooling1.h	2016-07-01 15:00:45.000000000 +0800
++++ b/include/linux/cpucore_cooling.h	2016-10-14 19:21:46.000000000 +0800
+@@ -39,8 +39,7 @@
+  * cpucore_cooling_register - function to create cpucore cooling device.
+  * @clip_cpus: cpumask of cpus where the frequency constraints will happen
+  */
+-struct thermal_cooling_device *cpucore_cooling_register(struct device_node *,
+-							int);
++struct thermal_cooling_device *cpucore_cooling_register(void);
+ 
+ /**
+  * cpucore_cooling_unregister - function to remove cpucore cooling device.
+@@ -51,7 +50,7 @@
+ 
+ #else /* !CONFIG_CPU_THERMAL */
+ static inline struct thermal_cooling_device *
+-cpucore_cooling_register(struct device_node *np)
++cpucore_cooling_register(void)
+ {
+ 	return NULL;
+ }

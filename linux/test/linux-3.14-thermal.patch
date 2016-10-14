@@ -1,0 +1,13 @@
+--- a/include/linux/thermal.h	2016-07-01 15:00:45.000000000 +0800
++++ b/include/linux/thermal.h	2016-10-14 19:14:18.000000000 +0800
+@@ -399,8 +399,8 @@
+ 
+ int thermal_zone_bind_cooling_device(struct thermal_zone_device *, int,
+ 				     struct thermal_cooling_device *,
+-				     unsigned long, unsigned long,
+-				     unsigned int);
++				     unsigned long, unsigned long);
++
+ int thermal_zone_unbind_cooling_device(struct thermal_zone_device *, int,
+ 				       struct thermal_cooling_device *);
+ void thermal_zone_device_update(struct thermal_zone_device *);
